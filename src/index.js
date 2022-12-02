@@ -12,10 +12,10 @@ window.onload = function (){
         const password = document.getElementById('password').value;
         const method = 'authentication';
         const answer = await sendRequest({method, email, password})
-        console.log(answer);
-        if (answer.data = 'login'){
+        console.log(answer.data.name);
+        if (answer.data.name){
             flag = true;
-            document.getElementById('authentication').innerHTML = 'Hello, User';
+            document.getElementById('authentication').innerHTML = `Hello, ${answer.data.name}`;
         }
     }
 
@@ -26,7 +26,9 @@ window.onload = function (){
             const method = 'form';
             const answer = await sendRequest({method, input, textarea})
             console.log(answer);
-            console.log('form sent')
+            console.log('form sent');
+            document.getElementById('form_input').value = '';
+            document.getElementById('form_textarea').value = '';
         } else {
             alert('You must authenticate first')
         }

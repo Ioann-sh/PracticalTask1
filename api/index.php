@@ -10,7 +10,6 @@ function router($params){
         $app = new Application();
         switch ($method){
             case 'check': return true;
-
             case 'authentication': return $app -> authentication($params);
             case 'form': return $app -> form($params);
         }
