@@ -2,16 +2,19 @@
 
 require("db/DB.php");
 require("user/User.php");
+require("form/Form.php");
 
 class Application
 {
     private $user;
+    private $form;
 
     function __construct()
     {
         $config = json_decode(file_get_contents('./config/config.json'), true);
         $db = new DB($config["DataBase"]);
         $this->user = new User($db);
+        $this->form = new Form($db);
     }
 
     public function authentication($params){
@@ -20,9 +23,9 @@ class Application
         }
     }
 
-    public function form($params){
-        if ($params['input'] && $params['textarea']){
-            return 'form';
+    public function submitForm($params){
+        if ($params['id'] && ($params['input'] || $params['textarea'] || $params['radioButton'] || $params['select'])){
+            return $this->form->submitForm($params['id'], $params['input'], $params['textarea'], $params['radioButton'], $params['select']);
         }
     }
 }

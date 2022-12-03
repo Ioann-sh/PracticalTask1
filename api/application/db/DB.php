@@ -35,4 +35,6 @@ class DB
             WHERE email="' . $email . '"';
         return $this->db->query($query)->fetchObject();
     }
+
+
 }

@@ -13,6 +13,7 @@ class User
         if ($user && $password === $user->password) {
             return array(
                 'name' => $user->name,
+                'id' => $user->id
             );
         }
     }

@@ -11,7 +11,7 @@ function router($params){
         switch ($method){
             case 'check': return true;
             case 'authentication': return $app -> authentication($params);
-            case 'form': return $app -> form($params);
+            case 'form': return $app -> submitForm($params);
         }
     }
     return false;
