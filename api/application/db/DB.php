@@ -36,5 +36,13 @@ class DB
         return $this->db->query($query)->fetchObject();
     }
 
-
+//INSERT INTO название_таблицы (столбец1, столбец2, столбецN) VALUES ( значение1, значение2, значениеN)
+    public function submitForm($id, $input, $textarea, $radioButton, $select, $flag){ //ADD FLAG
+        $query= '
+            INSERT INTO form
+            (id, input, textarea, radioButton, selector, flag)
+            VALUES
+            ("' . $id . '","' . $input . '","' . $textarea . '","' . $radioButton . '","' . $select . '","' . $flag . '")';
+        return $this->db->query($query)->fetchObject();
+    }
 }

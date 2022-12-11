@@ -5,34 +5,52 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>PracticalTask №1</title>
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css">
     <script src="src/index.js"></script>
 </head>
 <body>
 <div class="authentication" id="authentication">
+    <h2>Authentication</h2>
     <input class="email" id="email" placeholder="email">
     <input class="password" id="password" placeholder="password" type="password">
     <button id="authentication_button">Authenticate</button>
 </div>
-<div class="form">
-    <input id="form_input">
-    <textarea id="form_textarea"></textarea>
+<form class="form">
+    <h2>Form</h2>
+    <div class="form_input">
+        <h6>Input</h6>
+        <input id="form_input">
+    </div>
+    <div class="form_textarea">
+        <h6>Textarea</h6>
+        <textarea id="form_textarea"></textarea>
+    </div>
     <div class="form_radioButtons">
-        <input name="radioButton" type="radio" value="1"> Один
-        <input name="radioButton" type="radio" value="2"> Два
-        <input name="radioButton" type="radio" value="3"> Три
+        <h6>Radio Buttons</h6>
+        <input name="radioButton" type="radio" value="1" > Один
+        <input name="radioButton" type="radio" value="2" > Два
+        <input name="radioButton" type="radio" value="3" > Три
     </div>
     <div class="form_select">
+        <h6>Select</h6>
         <select id="select">
-            <option selected disabled></option>
+            <option selected ></option>
             <option value="apple">Apple</option>
             <option value="banana">Banana</option>
             <option value="orange">Orange</option>
         </select>
     </div>
-
-    <button id="reset">reset</button>
-    <button id="form">leave feedback</button>
-</div>
+    <div class="form_flags">
+        <h6>Flags</h6>
+        <input name="flag" type="checkbox" value="tomato"><span>tomato</span>
+        <input name="flag" type="checkbox" value="cucumber"><span>cucumber</span>
+        <input name="flag" type="checkbox" value="carrot"><span>carrot</span>
+    </div>
+    <div class="form_buttons">
+        <button type="button" id="reset">Reset</button>
+        <button type="button" id="form">Leave feedback</button>
+    </div>
+</form>
 </body>
 </html>

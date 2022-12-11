@@ -12,9 +12,11 @@ class User
         $user = $this->db->getUser($email);
         if ($user && $password === $user->password) {
             return array(
-                'name' => $user->name,
+                'user' => $user->name,
                 'id' => $user->id
             );
+        } else {
+            return 'User not found';
         }
     }
 

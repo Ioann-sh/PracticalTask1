@@ -24,8 +24,8 @@ class Application
     }
 
     public function submitForm($params){
-        if ($params['id'] && ($params['input'] || $params['textarea'] || $params['radioButton'] || $params['select'])){
-            return $this->form->submitForm($params['id'], $params['input'], $params['textarea'], $params['radioButton'], $params['select']);
+        if ($params['id'] && ($params['input'] || $params['textarea'] || $params['radioButton'] || $params['select'] || $params['flag'])) {
+            return $this->form->submitForm($params['id'], $params['input'], $params['textarea'], $params['radioButton'], $params['select'], $params['flag']);
         }
     }
 }

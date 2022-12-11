@@ -8,13 +8,7 @@ class Form
         $this->db = $db;
     }
 
-    public function submitForm($id, $input, $textarea, $radioButton, $select){
-        return array(
-            'id' => $id,
-            'input' => $input,
-            'textarea' => $textarea,
-            'radioButton' => $radioButton,
-            'select' => $select
-        );
+    public function submitForm($id, $input, $textarea, $radioButton, $select, $flag){
+        return $this->db->submitForm($id, $input, $textarea, $radioButton, $select, $flag);
     }
 }

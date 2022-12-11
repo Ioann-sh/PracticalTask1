@@ -1,5 +1,4 @@
 window.onload = function (){
-    let flag = false
     let id = ''
     async function sendRequest(params={}){
         const query = Object.keys(params)
@@ -9,21 +8,34 @@ window.onload = function (){
     }
     //аутендефикация
     async function sendAuthentication(){
-        const email = document.getElementById('email').value;
-        const password = document.getElementById('password').value;
+
+        function getEmail(){
+            return document.getElementById('email').value;
+        }
+
+        function getPassword(){
+            return document.getElementById('password').value;
+        }
+
+        const email = getEmail() || '';  //''
+        const password = getPassword() || '';  //''
         const method = 'authentication';
+
         const answer = await sendRequest({method, email, password})
         console.log(answer);
-        if (answer.data.id && answer.data.name){
+        if (answer.data.id && answer.data.user){
             id = answer.data.id;
-            flag = true;
-            document.getElementById('authentication').innerHTML = `Hello, ${answer.data.name}`;
+            document.getElementById('authentication').innerHTML = `Hello, ${answer.data.user}`;
+        } else if (answer.data === 'User not found'){
+            alert('User not found')
         }
     }
-    //очищение формы
+    //очистка формы
     function reset(){
         document.getElementById('form_input').value = '';
         document.getElementById('form_textarea').value = '';
+        document.getElementById('select').selectedIndex = 0;
+        document.querySelector('input[name="radioButton"]:checked').checked = false;
     }
     //отправить форму
     async function sendForm(){
@@ -44,31 +56,42 @@ window.onload = function (){
                 }
             }
         }
+
         function getSelect(){
             let sel = document.getElementById('select').selectedIndex;
             let opt = document.getElementById('select').options;
             return opt[sel].value;
         }
 
-        if (flag){
+        function getFlag(){
+            let flags = document.getElementsByName('flag');
+            let checkedFlags = [];
+            for (let i=0;i<flags.length; i++) {
+                if (flags[i].checked) {
+                    checkedFlags.push(flags[i].value);
+                }
+            }
+            return checkedFlags;
+        }
+
+        if (id !== ''){
             const method = 'form';
             const input = getInput() || '';
             const textarea = getTextarea() || '';
             const radioButton = getRadioButton() || '';
             const select = getSelect() || '';
-            console.log({method, input, textarea, radioButton, select})
+            const flag = getFlag() || '123';
+            console.log({method, id, input, textarea, radioButton, select, flag })
 
-            const answer = await sendRequest({method, id, input, textarea, radioButton, select})
+            const answer = await sendRequest({method, id, input, textarea, radioButton, select, flag})
             console.log(answer);
-            document.getElementById('form_input').value = '';
-            document.getElementById('form_textarea').value = '';
-            //document.getElementsByName('radioButton') = ;
+            reset();
         } else {
-            alert('You must authenticate first')
+            alert('You must authenticate first');
         }
     }
 
     document.getElementById('authentication_button').addEventListener('click', sendAuthentication);
-    document.getElementById('form').addEventListener('click', sendForm)
-    document.getElementById('reset').addEventListener('click', reset)
+    document.getElementById('form').addEventListener('click', sendForm);
+    document.getElementById('reset').addEventListener('click', reset);
 }
